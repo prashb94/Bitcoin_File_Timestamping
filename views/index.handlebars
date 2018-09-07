@@ -1,0 +1,12 @@
+<p>Stamp File : </p>
+<form action="/upload-file" enctype="multipart/form-data" method="post" class="upload_form">
+    <input type="file" name="file-to-upload">
+    <p></p>
+    <input type="submit" value="Upload">
+</form>
+<p>Retrieve File : </p>
+<form action="/get-file" method="get" class="upload_form">
+    <label><p>Enter transaction hash :</p></label>
+    <input type="text" name="txhash">
+    <input type="submit" value="Get File">
+</form>
