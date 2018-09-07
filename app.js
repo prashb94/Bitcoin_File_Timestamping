@@ -11,6 +11,17 @@ var send_op_return_tx = require('./op_return_tx');
 var io;
 var namespace;
 
+var files_dir = './static/files';
+var tmp_dir = './static/tmp';
+
+if (!fs.existsSync(files_dir)){
+    fs.mkdirSync(files_dir);
+}
+
+if (!fs.existsSync(tmp_dir)){
+    fs.mkdirSync(tmp_dir);
+}
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/bitcoin_timestamping', (err, connection) => {
 	if (err)
@@ -173,6 +184,12 @@ app.get('/pay', (req, res) => {
 			}
 		});
 	}, config.interval);
+	namespace_connection.on('connection', (socket) => {
+		socket.on('disconnect', () => {
+			console.log("A client disconnected from namespace with socket id = " + socket.id);
+			clearInterval(poll_interval);
+		});
+	});
 	res.render('pay', { qr: qrURL, amount: config.amount, address: address, ns: namespace });
 });
 
