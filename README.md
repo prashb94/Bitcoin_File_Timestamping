@@ -9,3 +9,11 @@ To run :
 5. Navigate to `localhost:3000` on your browser
 
 This application uses the blockcypher API to poll for an incoming transaction. You will hit their rate limit within a few minutes. Run your own bitcore-insight node to work around this rate limit.
+
+# Screenshots
+
+![Screen1](https://github.com/prashb94/Bitcoin_File_Timestamping/blob/master/screens/1.png)
+
+![Screen2](https://github.com/prashb94/Bitcoin_File_Timestamping/blob/master/screens/2.png)
+
+
