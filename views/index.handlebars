@@ -1,26 +1,40 @@
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-8">
-        <div class="alert alert-primary" role="alert">
-            <p>Stamp File : </p>
-            <form action="/upload-file" enctype="multipart/form-data" method="post" class="upload_form">
-                <input type="file" name="file-to-upload">
-                <p style="background: white"></p>
-                <input type="submit" value="Upload">
-            </form>
+<script>
+    document.body.classList.add('home_background')
+</script>
+<div class="container">
+    <div class="row" style="height: 8rem"></div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="card">
+            <img class="card-img-top" src="/img/bitcoin.jpg" alt="Card image">
+            <div class="card-body">
+                <h5 class="card-title" style="float: left">Stamp Transaction</h5>
+                <div style="height: 4.45rem;"></div>
+                <form action="/upload-file" enctype="multipart/form-data" method="post" class="upload_form">
+                    <input type="file" name="file-to-upload" class="file-input">
+                    <p style="background: white"></p>
+                </form>
+                <div style="height: 4rem"></div>
+                <button class="btn action-btn btn-primary btn-block" type="submit" value="Upload"><i class="fa fa-upload"></i>Upload</button>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="card">
+            <img class="card-img-top" src="/img/file.png" alt="Add retreive image here">
+            <div class="card-body">
+                <h5 class="card-title" style="float: left">Retrieve File</h5>
+                <div style="height: 3.45rem;"></div>
+                <form action="/get-file" method="get" class="upload_form">
+                    <label>
+                        <p>Enter transaction hash</p>
+                    </label>
+                    <input type="text" name="txhash">
+                </form>
+                <div style="height: 3rem"></div>
+                <button class="btn action-btn btn-primary btn-block" type="submit" value="Get File"><i class="fa fa-download"></i>Get
+                    File
+                </button>
+            </div>
         </div>
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="alert alert-warning" role="alert">
-            <p>Retrieve File : </p>
-            <form action="/get-file" method="get" class="upload_form">
-                <label><p>Enter transaction hash :</p></label>
-                <input type="text" name="txhash">
-                <input type="submit" value="Get File">
-            </form>
-        </div>
-    </div>
-    <div class="col-md-1"></div>
-</div>
 </div>
