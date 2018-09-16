@@ -20,7 +20,7 @@ body{
 
 .card{
     width: 22rem !important;
-    height: 25rem !important;
+    min-height: 25rem !important;
 }
 
 .file-input{
