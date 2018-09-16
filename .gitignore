@@ -1,0 +1,5 @@
+node_modules/*
+custom_modules/*
+price-fetcher/node_modules
+logs/
+temp-login-app/node_modules/*
