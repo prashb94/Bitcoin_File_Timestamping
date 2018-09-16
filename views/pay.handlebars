@@ -1,35 +1,50 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<div class="container">
+    <div style="height: 4rem;"></div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="card col-md-6" style="height: 30rem !important;">
+            <div class="card-body">
+                <h5 class="card-title">Scan QR on testnet wallet</h5>
+                <img src="{{qr}}" style="width: 60%;" />
+                <p class="card-text">Please send {{amount}} BTC to the following address : <strong>{{address}}</strong></p>
+                <div id="transaction"></div>
+                <form action="/" method="GET">
+                    <input type="submit" class="btn btn-primary" value="Go back">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
 
-<img src="{{qr}}" style="width: 20%;" />
-<p>Please send {{amount}} BTC to the following address : {{address}}</p>
 
-<div id="transaction"></div>
-
-<form action="/" method="GET">
-    <input type="submit" value="Go back">
-</form>
 
 <script>
-    $(function() {
+    document.body.classList.remove('home_background');
+    document.body.classList.add('qr_background');
+</script>
+<script>
+    $(function () {
         $(':input[type="submit"]').prop('disabled', true);
         var socket = io('/test');
         var sats = 100000000;
-        socket.on('conf', function(msg) {
-            if(msg != 0){
+        socket.on('conf', function (msg) {
+            if (msg != 0) {
                 console.log(msg);
-				$.each(msg.tx, function (i) {
-						$('#transaction').replaceWith('<div id="transaction"><p>Received Transaction!</p><span id="confirmations">' + msg.tx[i].confirmations + '/1</span> confirmations</p> Tx Hash = ' + msg.tx[i].hash);
-                        if(msg.tx[i].confirmations == 1){
-                            $(':input[type="submit"]').prop('disabled', false);
-                            $('#transaction').append('<p>Payment complete. Timestamping onto the bitcoin blockchain now...</p>');
-					}
-				});
+                $.each(msg.tx, function (i) {
+                    $('#transaction').replaceWith('<div id="transaction"><p>Received Transaction!</p><span id="confirmations">' + msg.tx[i].confirmations + '/1</span> confirmations</p> Tx Hash = ' + msg.tx[i].hash);
+                    if (msg.tx[i].confirmations == 1) {
+                        $(':input[type="submit"]').prop('disabled', false);
+                        $('#transaction').append('<p>Payment complete. Timestamping onto the bitcoin blockchain now...</p>');
+                    }
+                });
             }
         });
-        socket.on('data_hash', function(msg) {
-             $('#transaction').append('<p>Your data has been stamped onto the bitcoin blockchain! Please save this hash to retrieve your file later.</p>');
-              $('#transaction').append('<p>Hash = ' + msg.data_bc_hash + '</p><p>You may now close this page</p>');
+        socket.on('data_hash', function (msg) {
+            $('#transaction').append('<p>Your data has been stamped onto the bitcoin blockchain! Please save this hash to retrieve your file later.</p>');
+            $('#transaction').append('<p>Hash = ' + msg.data_bc_hash + '</p><p>You may now close this page</p>');
         });
     });
 </script>

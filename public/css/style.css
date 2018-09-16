@@ -1,9 +1,32 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
+.home_background{
+    background: linear-gradient(#CB356B, #BD3F32);;
+}
+
+.qr_background{
+    background: linear-gradient(#7F7FD5, #13a4f8, #86A8E7);
+}
+form {
+    display: inline-block;
+}
 body{
-    background-color: darkgray;
     text-align: center;
 }
 
-.row{
-    display: inline-block;
+.card{
+    width: 22rem !important;
+    height: 25rem !important;
+}
+
+.file-input{
+   max-width: 300px;
+}
+
+.action-button{
+    bottom: 0;
 }
